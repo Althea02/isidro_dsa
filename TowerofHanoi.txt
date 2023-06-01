@@ -1,0 +1,78 @@
+public class TowerofHanoi_Isidro {
+
+    public static class Node{
+        public int data;
+        public Node next;
+    
+        public Node(int d){
+            data = d;
+            next = null;
+        }
+    }
+    
+    public static class Stack{
+        public Node top;
+    
+        private void push(int d){
+            Node n = new Node(d);
+            n.next = top;
+            top = n;
+        }
+
+        private int pop() {
+            if(top == null){
+                return -1;
+            }
+            
+            int d;
+            d = top.data;
+            top = top.next;
+            return d;
+            
+        }
+        
+        public int peek(Node top){
+        
+            if(top == null){
+                return -1;
+            }
+            return top.data;
+        }
+        
+        public boolean isEmpty(){
+            return top == null;
+        }
+    
+    }
+    
+    public static class TowerOfHanoi{
+        Stack source, middle, destination;
+        
+        public void initialize(int n){
+            source = new Stack();
+            middle = new Stack();
+            destination = new Stack();
+            
+            for(int i = n; i > 0; i--){
+                source.push(i);
+            }
+        }
+
+        public void move(int n, Stack src, Stack dst, Stack aux) {
+            if(n > 0){
+                move(n-1, src, aux, dst);
+                int d = src.pop();
+                dst.push(d);
+                System.out.println("Move disk " + d + " from " + (src == source? "A" : (src == middle? "B" : "C" )) + " to "+ (dst == source? "A" : (dst == middle? "B" : "C")));
+                move(n - 1, aux, dst, src);
+            }
+        }
+    }
+
+
+    public static void main(String[] args) {
+        TowerOfHanoi toh = new TowerOfHanoi(); //This part took me neary 3 hours until I realize the mistake
+        toh.initialize(3);
+        toh.move(3, toh.source, toh.destination, toh.middle);
+    }
+}
