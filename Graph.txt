@@ -1,0 +1,107 @@
+class Graph{
+
+    class Edge{
+         int src, dest, path;
+    }
+    
+    int vertices, edges;
+    
+    Edge[] edge;
+    
+    public Graph(int vertices, int edges){
+    
+        this.vertices = vertices;
+        this.edges = edges;
+        
+        edge = new Edge[edges];
+        
+        for(int i = 0; i < edges; i++){
+            edge[i] = new Edge();
+        }
+    }
+}
+
+public class Graph_DSA {
+
+    public static void main(String[] args) {
+   
+        int noVertices = 5;
+        int noEdges = 8;
+        Graph g = new Graph(noVertices, noEdges);
+        
+        //edge Home -> Park -> Market
+        g.edge[0].src = 1;
+        g.edge[0].dest = 2;
+        g.edge[0].path = 5;
+        
+        //edge School -> Park -> Market
+        g.edge[1].src = 4;
+        g.edge[1].dest = 2;
+        g.edge[1].path = 5;
+        
+        //edge Park -> Home -> Church
+        g.edge[2].src = 2;
+        g.edge[2].dest = 1;
+        g.edge[2].path = 3;
+        
+        //edge Home -> Park -> School
+        g.edge[3].src = 1;
+        g.edge[3].dest = 2;
+        g.edge[3].path = 4;
+       
+        //edge Home -> School -> Church
+        g.edge[4].src = 1;
+        g.edge[4].dest = 4;
+        g.edge[4].path = 3;
+    
+        for (int i = 0; i < 4; i ++){
+            int src = g.edge[i].src;
+            int dest = g.edge[i].dest;
+            int path = g.edge[i].path;
+            
+            if(src == 1){
+               System.out.print("Home");
+            } else if(src == 2){
+               System.out.print("Park");
+            } else if(src == 3){
+               System.out.print("Church");
+            } else if(src == 4){
+               System.out.print("School");
+            } else if(src == 5){
+               System.out.print("Market");
+            }
+            
+            System.out.print(" -> ");
+            
+            if(dest == 1){
+               System.out.print("Home");
+            } else if(dest == 2){
+               System.out.print("Park");
+            } else if(dest == 3){
+               System.out.print("Church");
+            } else if(dest == 4){
+               System.out.print("School");
+            } else if(dest == 5){
+               System.out.print("Market");
+            }
+
+            System.out.print(" -> ");
+            
+            if(path == 1){
+               System.out.print("Home");
+            } else if(path == 2){
+               System.out.print("Park");
+            } else if(path == 3){
+               System.out.print("Church");
+            } else if(path == 4){
+               System.out.print("School");
+            } else if(path == 5){
+               System.out.print("Market");
+            }
+            
+            System.out.println();
+        }
+        
+    }
+    
+}
